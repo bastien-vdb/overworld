@@ -4,8 +4,8 @@ import { TileLayer } from 'react-leaflet';
 function TileLayerComp() {
     return (
         <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.carto.com/attributions">CARTO</a>'
         />
     );
 }

@@ -22,7 +22,7 @@ function Tabs({ elements, onTabClick }: TabsType) {
         <div className="tabs">
             {elements.map((element: any) => (
                 <a className={`tab tab-lifted ${activeTab === element.country ? 'tab-active' : ''}`} key={element.country} onClick={()=>handleTabClick(element)}>
-                    {element.country}
+                    <span className={`${activeTab === element.country ? 'font-bold text-red-500 text-xl duration-700' : ''}`}>{element.country.toUpperCase()}</span>
                 </a>
             ))}
 

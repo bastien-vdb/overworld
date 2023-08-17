@@ -9,18 +9,24 @@ export const useCity = () => {
 
 export const CityProvider = ({ children }: PropsWithChildren) => {
   const [citylist, setCityList] = useState([]);
+  const [activeCountry, setActiveCountry] = useState('');
 
-  const setCities = (city: any) => {
+  const setCities = (city: any, country:any) => {
     setCityList(city);
+    setActiveCountry(country);
   };
 
   const getCities = () => {
     return citylist;
   };
 
+  const getActiveCountry = () => {
+    return activeCountry;
+  };
+
   console.log(citylist);
 
-  return <CityContext.Provider value={{ getCities, setCities } as any}>
+  return <CityContext.Provider value={{ getCities, setCities, getActiveCountry, activeCountry } as any}>
     {children}
   </CityContext.Provider>;
 };

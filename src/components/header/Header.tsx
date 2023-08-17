@@ -12,7 +12,7 @@ function Header() {
 
     const HandleChangeCountry = async (country: any) => {
         const newCities = await handleLoadCountry(country.cities);
-        setCities(newCities);
+        setCities(newCities, country.country);
     }
 
     return (

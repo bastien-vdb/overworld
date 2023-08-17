@@ -1,6 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 function UserAvatar() {
     const { data: session, status } = useSession();
