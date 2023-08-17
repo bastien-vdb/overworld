@@ -8,14 +8,19 @@ export const useCity = () => {
 };
 
 export const CityProvider = ({ children }: PropsWithChildren) => {
-  const [cities, setCities] = useState([]);
+  const [citylist, setCityList] = useState([]);
 
-  // Fonction pour ajouter une ville
-  const setCity = (city: any) => {
-    setCities(city);
+  const setCities = (city: any) => {
+    setCityList(city);
   };
 
-  return <CityContext.Provider value={{ cities, setCity } as any}>
-  {children}
+  const getCities = () => {
+    return citylist;
+  };
+
+  console.log(citylist);
+
+  return <CityContext.Provider value={{ getCities, setCities } as any}>
+    {children}
   </CityContext.Provider>;
 };

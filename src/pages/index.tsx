@@ -2,12 +2,13 @@ import Image from 'next/image'
 import dynamic from 'next/dynamic';
 import 'leaflet/dist/leaflet.css';
 import { fetchWeatherData } from '@/functions/map/fetchWeatherData';
-import { cityList } from '@/utils/cities.config';
+import { allCountries } from '@/utils/cities.config';
 import getAllCitiesLatLon from '@/functions/map/getAllCitiesLatLon';
 import Header from '@/components/header/Header';
 import { useSession, signIn } from "next-auth/react";
 import GlassButton from '@/components/buttons/GlassButton';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useCity } from '@/contexts/useCityContext';
 
 // Chargement du composant Map de manière dynamique avec l'option { ssr: false }
 const Map = dynamic(() => import('@/components/map/Map'), {
@@ -17,13 +18,10 @@ const Map = dynamic(() => import('@/components/map/Map'), {
 
 export default function Home({ citiesWithMetetoData:initialCities }: any) {
 
-  const [citiesWithMetetoData, setCitiesWithMetetoData] = useState(initialCities);
-  
-  const HandleChangeCountry = async () => {
-    const cities = await getAllCitiesLatLon(['milan', 'rome']);
-    const citiesWithMetetoData = await fetchWeatherData(cities);
-    setCitiesWithMetetoData(citiesWithMetetoData);
-  };
+  const { getCities, setCities }:any = useCity();
+
+  //Afin que les données initialCities soient chargées uniquement au premier rendu du composant
+  useEffect(()=>setCities(initialCities),[initialCities]);
 
   const { data: session, status } = useSession();
 
@@ -39,16 +37,15 @@ export default function Home({ citiesWithMetetoData:initialCities }: any) {
 
   return (
     <>
-    <button onClick={HandleChangeCountry}>Reset</button>
       <Header />
-      <Map citiesWithMetetoData={citiesWithMetetoData} />
+      <Map />
     </>
   )
 };
 
 export const getServerSideProps = async () => {
 
-  const cities = await getAllCitiesLatLon(cityList);
+  const cities = await getAllCitiesLatLon(allCountries[0].cities);
   const citiesWithMetetoData = await fetchWeatherData(cities);
 
   return { props: { citiesWithMetetoData } };
