@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { fetchWeatherData } from '@/functions/map/fetchWeatherData';
 import { cityList } from '@/utils/cities.config';
 import getAllCitiesLatLon from '@/functions/map/getAllCitiesLatLon';
+import Header from '@/components/header/Header';
 
 // Chargement du composant Map de manière dynamique avec l'option { ssr: false }
 const Map = dynamic(() => import('@/components/map/Map'), {

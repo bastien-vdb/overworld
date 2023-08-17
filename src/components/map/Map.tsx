@@ -3,7 +3,7 @@ import 'leaflet/dist/leaflet.css';
 import MarkerComp from '@/components/map/MarkerComp';
 import TileLayerComp from './TileLayerComp';
 
-const mapConfig = [48.8566, 2.3522];
+const mapConfig: [number, number] = [48.8566, 2.3522];
 
 function Map({ citiesWithMetetoData }: any) {
 
