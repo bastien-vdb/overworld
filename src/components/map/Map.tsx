@@ -13,17 +13,19 @@ function Map() {
   const cities = getCities();
 
   return (
+    <div className='w-full flex justify-center'>
     <MapContainer
       zoomControl={false}
       scrollWheelZoom={false}
       center={mapConfig}
       zoom={5}
-      style={{ width: '100%', height: '600px' }}
-      dragging={false}
+      className='w-[100%] lg:w-[80%]'
+      style={{height: '600px' }}
     >
       <TileLayerComp />
       {cities.map((city: any, i: number) => <MarkerComp key={i} city={city} />)}
     </MapContainer>
+    </div>
   );
 }
 
