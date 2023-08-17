@@ -21,7 +21,7 @@ export default function Home({ citiesWithMetetoData:initialCities }: any) {
   const { getCities, setCities }:any = useCity();
 
   //Afin que les données initialCities soient chargées uniquement au premier rendu du composant
-  useEffect(()=>setCities(initialCities),[initialCities]);
+  useEffect(()=>setCities(initialCities),[]);
 
   const { data: session, status } = useSession();
 
