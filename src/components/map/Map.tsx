@@ -9,22 +9,22 @@ const mapConfig: [number, number] = [43.7696, 7.49508];
 
 function Map() {
 
-  const { getCities }: any = useCity();
+  const { getCities } = useCity();
   const cities = getCities();
 
   return (
     <div className='w-full flex justify-center'>
-    <MapContainer
-      zoomControl={false}
-      scrollWheelZoom={false}
-      center={mapConfig}
-      zoom={5}
-      className='w-[100%] lg:w-[80%]'
-      style={{height: '600px' }}
-    >
-      <TileLayerComp />
-      {cities.map((city: any, i: number) => <MarkerComp key={i} city={city} />)}
-    </MapContainer>
+      <MapContainer
+        zoomControl={false}
+        scrollWheelZoom={false}
+        center={mapConfig}
+        zoom={5}
+        className='w-[100%] lg:w-[80%]'
+        style={{ height: '600px' }}
+      >
+        <TileLayerComp />
+        {cities.map((city, i: number) => <MarkerComp key={i} city={city} />)}
+      </MapContainer>
     </div>
   );
 }

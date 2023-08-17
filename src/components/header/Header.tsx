@@ -5,12 +5,13 @@ import Title from '@/components/header/Title';
 import { useCity } from '@/contexts/useCityContext';
 import { allCountries } from '@/utils/cities.config';
 import { handleLoadCountry } from '@/functions/map/handleLoadCountry';
+import type { CountryType } from '@/types/Country.type';
 
 function Header() {
 
-    const { setCities }: any = useCity();
+    const { setCities } = useCity();
 
-    const HandleChangeCountry = async (country: any) => {
+    const handleChangeCountry = async (country: CountryType) => {
         const newCities = await handleLoadCountry(country.cities);
         setCities(newCities, country.country);
     }
@@ -18,7 +19,7 @@ function Header() {
     return (
         <div className="navbar bg-base-100 flex justify-between items-center">
             <Title text="OpenWorld" />
-            <Tabs elements={allCountries} onTabClick={HandleChangeCountry} />
+            <Tabs elements={allCountries} onTabClick={handleChangeCountry} />
             <Avatar />
         </div>
     );

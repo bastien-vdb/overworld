@@ -2,10 +2,16 @@ import React from 'react';
 import { Marker } from 'react-leaflet';
 import cityMarker from '@/components/icons/cityMarker';
 import TooltipComp from './TooltipComp';
+import { CityType } from '@/types/City.type';
 
-function MarkerComp({ city, i }: any) {
+type MarkerCompProps = {
+  city: CityType;
+  key: number;
+}
+
+function MarkerComp({ city, key }: MarkerCompProps) {
   return (
-    <Marker key={i} position={[city.lat, city.lon] as any} icon={cityMarker}>
+    <Marker key={key} position={[city.lat, city.lon]} icon={cityMarker}>
       <TooltipComp city={city} />
     </Marker>
   );

@@ -1,13 +1,17 @@
 import React from 'react';
 import { Tooltip } from 'react-leaflet';
+import type { CityType } from '@/types/City.type';
 
-function TooltipComp({city}: any) {
-    console.log('tooltipComp', city);
+type TooltipCompProps = {
+    city: CityType;
+};
+
+function TooltipComp({ city }: TooltipCompProps) {
     return (
         <Tooltip>
-            <p>City: {city.name as any}</p>
-            <p>Weather: {city.weather as any}</p>
-            <p>Temperature: {city.temperature as any}°C</p>
+            <p>City: {city.name}</p>
+            <p>Weather: {city.weather}</p>
+            <p>Temperature: {city.temperature}°C</p>
         </Tooltip>
     );
 }

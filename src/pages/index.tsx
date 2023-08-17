@@ -1,14 +1,14 @@
-import Image from 'next/image'
 import dynamic from 'next/dynamic';
 import 'leaflet/dist/leaflet.css';
 import { allCountries } from '@/utils/cities.config';
 import Header from '@/components/header/Header';
 import { useSession, signIn } from "next-auth/react";
 import GlassButton from '@/components/buttons/GlassButton';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useCity } from '@/contexts/useCityContext';
 import { handleLoadCountry } from '@/functions/map/handleLoadCountry';
 import Footer from '@/components/footer/Footer';
+import { CityType } from '@/types/City.type';
 
 // Chargement du composant Map de manière dynamique avec l'option { ssr: false }
 const Map = dynamic(() => import('@/components/map/Map'), {
@@ -16,14 +16,18 @@ const Map = dynamic(() => import('@/components/map/Map'), {
   loading: () => <p>Loading...</p>,
 });
 
-export default function Home({ citiesWithMetetoData: initialCities }: any) {
+type HomeProps = {
+  citiesWithMetetoData: CityType[];
+}
 
-  const { getCities, setCities }: any = useCity();
+export default function Home({ citiesWithMetetoData: initialCities }: HomeProps) {
+
+  const { setCities } = useCity();
 
   //Afin que les données initialCities soient chargées uniquement au premier rendu du composant
   useEffect(() => setCities(initialCities, allCountries[0].country), []);
 
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   if (status === "loading") {
     return <p>Chargement...</p>
