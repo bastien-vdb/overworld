@@ -7,7 +7,7 @@ export const fetchWeatherData = async (cities:any) => {
 
     const weatherData = await Promise.all(cities.map(async(city:any) => {
     
-      const url = `http://api.openweathermap.org/data/2.5/weather?q=${city.name}&appid=${apiKey}`;
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.name}&appid=${apiKey}`;
       
       const response = await fetcher(url);
       return {
