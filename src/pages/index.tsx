@@ -15,10 +15,15 @@ const Map = dynamic(() => import('@/components/map/Map'), {
   loading: () => <p>Loading...</p>,
 });
 
-export default function Home({ citiesWithMetetoData }: any) {
+export default function Home({ citiesWithMetetoData:initialCities }: any) {
 
-  const [test, setTest] = useState(0);
-
+  const [citiesWithMetetoData, setCitiesWithMetetoData] = useState(initialCities);
+  
+  const HandleChangeCountry = async () => {
+    const cities = await getAllCitiesLatLon(['milan', 'rome']);
+    const citiesWithMetetoData = await fetchWeatherData(cities);
+    setCitiesWithMetetoData(citiesWithMetetoData);
+  };
 
   const { data: session, status } = useSession();
 
@@ -34,8 +39,7 @@ export default function Home({ citiesWithMetetoData }: any) {
 
   return (
     <>
-    {test}
-    <button onClick={() => setTest(test + 1)}>test</button>
+    <button onClick={HandleChangeCountry}>Reset</button>
       <Header />
       <Map citiesWithMetetoData={citiesWithMetetoData} />
     </>
@@ -46,7 +50,6 @@ export const getServerSideProps = async () => {
 
   const cities = await getAllCitiesLatLon(cityList);
   const citiesWithMetetoData = await fetchWeatherData(cities);
-  console.log('y ka bay li again');
 
   return { props: { citiesWithMetetoData } };
 };
