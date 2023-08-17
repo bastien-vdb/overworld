@@ -6,7 +6,7 @@ export const france = [
     'madrid','barcelone'
   ];
 
-  export const italie = [
+  export const italie:string[] = [
     'rome','milan'
   ];
 

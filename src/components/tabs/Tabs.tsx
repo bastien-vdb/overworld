@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
-import { useCity } from '@/contexts/useCityContext';
-import getAllCitiesLatLon from '@/functions/map/getAllCitiesLatLon';
-import { fetchWeatherData } from '@/functions/map/fetchWeatherData';
+import { CountryType } from '@/types/Country.type';
 
-function Tabs({ elements, onTabClick }: any) {
+type TabsType = {
+    elements: CountryType[],
+    onTabClick: (country: CountryType) => void,
+}
+
+
+function Tabs({ elements, onTabClick }: TabsType) {
+
     const [activeTab, setActiveTab] = useState(elements[0].country || '');
 
-    function handleTabClick(country: string) {
-        setActiveTab(country.country);
-        onTabClick(country)
+    function handleTabClick(element: CountryType) {
+        setActiveTab(element.country);
+        onTabClick(element)
       }
 
     console.log(elements);
 
     return (
         <div className="tabs">
-            {elements.map((country: any) => (
-                <a className={`tab tab-lifted ${activeTab === country.country ? 'tab-active' : ''}`} key={country.country} onClick={()=>handleTabClick(country)}>
-                    {country.country}
+            {elements.map((element: any) => (
+                <a className={`tab tab-lifted ${activeTab === element.country ? 'tab-active' : ''}`} key={element.country} onClick={()=>handleTabClick(element)}>
+                    {element.country}
                 </a>
             ))}
 
