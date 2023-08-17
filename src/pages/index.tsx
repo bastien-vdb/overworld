@@ -5,6 +5,9 @@ import { fetchWeatherData } from '@/functions/map/fetchWeatherData';
 import { cityList } from '@/utils/cities.config';
 import getAllCitiesLatLon from '@/functions/map/getAllCitiesLatLon';
 import Header from '@/components/header/Header';
+import { useSession, signIn } from "next-auth/react";
+import GlassButton from '@/components/buttons/GlassButton';
+import { useState } from 'react';
 
 // Chargement du composant Map de manière dynamique avec l'option { ssr: false }
 const Map = dynamic(() => import('@/components/map/Map'), {
@@ -12,10 +15,29 @@ const Map = dynamic(() => import('@/components/map/Map'), {
   loading: () => <p>Loading...</p>,
 });
 
-export default function Home({citiesWithMetetoData}:any) {
+export default function Home({ citiesWithMetetoData }: any) {
+
+  const [test, setTest] = useState(0);
+
+
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return <p>Chargement...</p>
+  }
+
+  if (status !== "authenticated") return (
+    <div className='h-screen bg-black flex justify-center items-center'>
+      <GlassButton text="Connect to OpenWorld" onClick={() => signIn()} />
+    </div>
+  )
+
   return (
     <>
-      <Map citiesWithMetetoData={citiesWithMetetoData}/>
+    {test}
+    <button onClick={() => setTest(test + 1)}>test</button>
+      <Header />
+      <Map citiesWithMetetoData={citiesWithMetetoData} />
     </>
   )
 };
@@ -23,7 +45,8 @@ export default function Home({citiesWithMetetoData}:any) {
 export const getServerSideProps = async () => {
 
   const cities = await getAllCitiesLatLon(cityList);
-  const citiesWithMetetoData =  await fetchWeatherData(cities);
+  const citiesWithMetetoData = await fetchWeatherData(cities);
+  console.log('y ka bay li again');
 
-  return { props: { citiesWithMetetoData} };
+  return { props: { citiesWithMetetoData } };
 };
