@@ -115,6 +115,45 @@ The application uses SSR with `getServerSideProps` from Next.js for the initial 
 The "cities.config.ts" file in `utils` allows for setting up cities and countries that can be used in the API.
 
 
+## Areas for Improvement with More Time
+
+1. **Optimization**
+   - Enhance performance and responsiveness by reducing API calls and utilizing more efficient algorithms.
+
+2. **User Experience (UX)**
+   - Improve the user interface and experience with user-friendly features, animations, and better error handling.
+
+3. **Additional Features**
+   - Implement new features like search functionality, saving favorite locations, or integrating additional APIs for more comprehensive data.
+   - Add countries available directly in front end or in back end with a admin user
+
+4. **Testing**
+   - Implement more comprehensive testing for both the front-end and back-end components of the application.
+
+5. **Code Quality**
+   - Spend more time refactoring and cleaning up the code to adhere to best practices and improve readability.
+
+7. **Documentation**
+   - Add more detailed and comprehensive documentation to assist others in understanding and contributing to the project.
+
+8. **Security**
+   - Enhance security through better error handling, data validation from api with ZOD library by example.
+
+
+## Difficulties Encountered
+
+1. **API Limitations**
+   - Encountered rate limits and quota restrictions on the APIs used, which affected the application's functionality and required implementing a limiter mechanism.
+
+2. **Integration Issues**
+   - Experienced challenges in integrating various libraries and tools, such as Leaflet and Tailwind CSS, due to conflicting styles and behaviors.
+
+3. **Data Inconsistencies**
+   - Dealt with inconsistent data formats and missing values returned by the APIs, necessitating extensive data validation and cleaning.
+
+4. **State Management**
+   - Faced difficulties in managing and synchronizing application state across multiple components, leading to occasional bugs and unpredictable behavior.
+
 
 ## Contribution
 **Contributions** to this project are welcome! If you would like to contribute, please send me a message.
