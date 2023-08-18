@@ -6,17 +6,37 @@ Welcome to the Overworld repository, a web application designed to display an in
 ## Table of Contents
 
 - [Description](#description)
+- [Access the App Online](#access-the-app-online)
 - [Features](#features)
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
+- [Code Structure](#code-structure)
+  - [Components](#components)
+  - [Additional Folders](#additional-folders)
+  - [Logic and Display](#logic-and-display)
+  - [APIs Used](#apis-used)
+  - [Constraints](#constraints)
+  - [Important Points](#important-points)
+- [Areas for Improvement with More Time](#areas-for-improvement-with-more-time)
+- [Difficulties Encountered](#difficulties-encountered)
 - [Contribution](#contribution)
 - [License](#license)
 - [Contact](#contact)
 
+
 ## Description
 **Overworld** is an application that allows users to display an interactive map with geospatial data. By hovering over a city, department, or region, the application displays API data for that area.
+
+## Access the App Online
+
+You can access the app online at the following URL:
+
+[https://overworld-one.vercel.app/](https://overworld-one.vercel.app/)
+
+Simply open the link in your preferred web browser to interact with the app.
+
 
 ## Features
 
