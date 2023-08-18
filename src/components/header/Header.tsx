@@ -18,7 +18,7 @@ function Header() {
 
     return (
         <div className="navbar bg-base-100 flex justify-between items-center">
-            <Title text="OpenWorld" />
+            <Title text="OverWorld" />
             <Tabs elements={allCountries} onTabClick={handleChangeCountry} />
             <Avatar />
         </div>

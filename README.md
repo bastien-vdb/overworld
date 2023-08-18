@@ -1,86 +1,132 @@
-# overworld
+# Overworld
+Overworld - web app using React/TypeScript to display a map and API data!
 
-overworld - web app using react / typescript to display a map and API data!!
+Welcome to the Overworld repository, a web application designed to display an interactive map and geospatial API data. This README contains information on setting up, using, and documenting the application.
 
-Bienvenue sur le dépôt de Overworld, une application web conçue pour afficher une carte et des données d'API géographiques. Ce README contient des informations sur la configuration, l'utilisation et la documentation de l'application.
-
-## Sommaire
+## Table of Contents
 
 - [Description](#description)
-- [Fonctionnalités](#fonctionnalités)
+- [Features](#features)
 - [Installation](#installation)
 - [Configuration](#configuration)
-- [Utilisation](#utilisation)
-- [Technologies utilisées](#technologies-utilisées)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
 - [Contribution](#contribution)
-- [Licence](#licence)
+- [License](#license)
 - [Contact](#contact)
 
 ## Description
-```bash
-Overworld est une application qui permet aux utilisateurs d'afficher une carte interactive avec des données géographiques. En survolant une ville, un département ou une région, l'application affiche des données d'API pour cette zone.
-```
+**Overworld** is an application that allows users to display an interactive map with geospatial data. By hovering over a city, department, or region, the application displays API data for that area.
 
-## Fonctionnalités
+## Features
 
-- **Affichage d'une carte interactive** : Affichez une carte interactive avec des données géographiques.
-- **Données d'API géographiques** : En survolant une zone, l'application affiche des données d'API pour cette zone.
-- **Données d'API géographiques par pays** : En cliquant sur les différentes tabulations, des données différentes, liées au pays sont affichées.
-- **Profil utilisateur** : Un avatar est affiché dans l'en-tête, et en passant la souris dessus, une boîte s'affiche avec des informations sur l'utilisateur (prénom, nom et e-mail).
+- **Interactive Map Display**: Display an interactive map with geospatial data.
+- **Geospatial API Data**: Hover over an area to display API data for that zone.
+- **Geospatial API Data by Country**: Click on different tabs to display different data related to the country.
+- **User Profile**: An avatar is displayed in the header, and hovering over it reveals a box with user information (first name, last name, and email).
 
 ## Installation
 ```bash
 git clone https://github.com/utilisateur/Overworld.git
 ```
-Accédez au répertoire du projet :
+Go the project :
 ```bash
 cd Overworld
 ```
-Installez les dépendances nécessaires avec :
+Install the dependencies :
 ```bash
 npm install
 ```
-Lancez l'application en mode développement avec :
+Launch the app in dev mode:
 ```bash
 npm run dev
-L'application devrait maintenant être accessible à l'adresse [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 ```
+The app should be now available on [http://localhost:3000](http://localhost:3000) in your web browser.
+
 
 ## Configuration
-**Pour** utiliser cette application, vous aurez besoin d'une clé API pour une API géographique de votre choix.
-Créez un fichier .env à la racine du projet.
-Ajoutez la clé API à votre fichier .env :
-API_KEY=your_api_key
+**To use** this application, you will need an API key for a geographic API of your choice.
+Create a **.env** file at the root of the project.
+Add the API key to your .env file:
+**API_KEY=your_api_key**
 
 
 ## Utilisation
-**Ouvrez** votre navigateur et accédez à http://localhost:3000.
-Vous verrez une carte interactive. Passez votre souris sur une zone pour afficher les données d'API pour cette zone.
-Survolez l'avatar dans l'en-tête pour afficher les informations de l'utilisateur.
+**Open** your browser and navigate to **http://localhost:3000.**
+You will see an interactive map. Hover over an area to display the API data for that area.
+Hover over the avatar in the header to display the user information.
 
 
-## Technologies utilisées
-```bash
-React.js : Bibliothèque JavaScript pour la création d'interfaces utilisateur.
-TypeScript : Superset de JavaScript pour le typage statique.
-Next.js : Framework de développement d'applications React.
-Leaflet : Bibliothèque JavaScript pour la création de cartes interactives.
-Tailwind CSS : Framework CSS pour la conception d'interfaces utilisateur.
-```
+## Technologies Used
+**React.js:** JavaScript library for building user interfaces.
+**TypeScript:** Superset of JavaScript for static typing.
+**Next.js:** Framework for developing React applications.
+**Leaflet:** JavaScript library for creating interactive maps.
+**Tailwind CSS:** CSS framework for designing user interfaces.
+
+
+## Code Structure
+
+The application is organized into components and distributed across folders for better readability and code maintenance. Below is a brief explanation of the code structure:
+
+### Components
+
+The application is composed of three main components:
+- `Header`: composed of `Title`, `Tabs`, and `Avatar`.
+- `Map`: contains a map container (`MapContainer`) and a marker component (`MarkerComp`).
+- `Footer`
+
+Each element on the page is separated into explicit components and placed in appropriate folders:
+
+- `Contexts`: Contains API contexts.
+- `Components`: Folder for main components.
+  - `Buttons`
+  - `Footer`
+  - `Header`
+  - `Map`
+  - `Icons`
+  - `Tabs`
+
+### Additional Folders
+- `functions`: Contains code for business functions (data fetching logic from external API).
+- `page`: Contains code for pages (the application is based on Next.js).
+- `style`: Contains style files.
+- `types`: Contains all custom explicitly defined TypeScript types.
+- `utils`: Contains configuration files and reusable functions.
+
+### Logic and Display
+
+The application is coded by separating logic as much as possible into distinct functions and keeping only the display in React components.
+
+### APIs Used
+
+The application is connected to two APIs:
+- Geocode: to obtain geographic coordinates of cities.
+- OpenWeather: to obtain weather data.
+
+### Constraints
+
+A "limiter" function has been created in the `utils` folder using the "bottleneck" library to manage API call rate limits per second to cope with these APIs' constraints.
+
+### Important Points
+
+The application uses SSR with `getServerSideProps` from Next.js for the initial fetch when a user arrives on the application.
+
+The "cities.config.ts" file in `utils` allows for setting up cities and countries that can be used in the API.
+
+
 
 ## Contribution
-```bash
-Les contributions à ce projet sont les bienvenues ! Si vous souhaitez contribuer, veuillez suivre les étapes mentionnées précédemment dans la section "Contribution".
-```
+**Contributions** to this project are welcome! If you would like to contribute, please send me a message.
 
-## Licence
-```bash
-Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
-```
+## License
+This project is licensed under the MIT License.
 
 ## Contact
-Si vous avez des questions ou des commentaires sur ce projet, n'hésitez pas à me contacter :
+If you have any questions or comments about this project, please feel free to contact me:
 
-**Nom** : Bastien Vermot de boisrolin
-**Email** : bastien.deboisrolin@gmail.com
-**GitHub** : @bastien-vdb
+**Name**: Bastien Vermot de boisrolin
+**Email**: bastien.deboisrolin@gmail.com
+**GitHub**: @bastien-vdb
+
+
