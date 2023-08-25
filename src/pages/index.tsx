@@ -1,14 +1,15 @@
 import dynamic from 'next/dynamic';
 import 'leaflet/dist/leaflet.css';
-import { allCountries } from '@/utils/cities.config';
+import { allCities } from '@/utils/cities.config';
 import Header from '@/components/header/Header';
 import { useSession, signIn } from "next-auth/react";
 import GlassButton from '@/components/buttons/GlassButton';
-import { useEffect } from 'react';
 import { useCity } from '@/contexts/useCityContext';
-import { handleLoadCountry } from '@/functions/map/handleLoadCountry';
 import Footer from '@/components/footer/Footer';
 import { CityType } from '@/types/City.type';
+import { getCitiesLocalisation } from '@/functions/map/getCitiesLocalisation'
+import { getCitiesMetetoData } from '@/functions/map/getCitiesMetetoData';
+import { useEffect } from 'react';
 
 // Chargement du composant Map de manière dynamique avec l'option { ssr: false }
 const Map = dynamic(() => import('@/components/map/Map'), {
@@ -17,15 +18,15 @@ const Map = dynamic(() => import('@/components/map/Map'), {
 });
 
 type HomeProps = {
-  citiesWithMetetoData: CityType[];
+  citiesMetetoData: CityType[];
 }
 
-export default function Home({ citiesWithMetetoData: initialCities }: HomeProps) {
+export default function Home({ citiesMetetoData }: HomeProps) {
 
   const { setCities } = useCity();
 
   //Afin que les données initialCities soient chargées uniquement au premier rendu du composant
-  useEffect(() => setCities(initialCities, allCountries[0].country), []);
+  useEffect(() => setCities(citiesMetetoData), []);
 
   const { status } = useSession();
 
@@ -40,17 +41,19 @@ export default function Home({ citiesWithMetetoData: initialCities }: HomeProps)
   )
 
   return (
-    <div>
+    <>
       <Header />
       <Map />
       <Footer />
-    </div>
+    </>
   )
 };
 
 export const getServerSideProps = async () => {
 
-  const citiesWithMetetoData = await handleLoadCountry(allCountries[0].cities);
+  const citiesLocalisation = await getCitiesLocalisation(allCities['france'], 'france');
+  const citiesMetetoData = await getCitiesMetetoData(citiesLocalisation);
+  console.log('server side')
 
-  return { props: { citiesWithMetetoData } };
+  return { props: { citiesMetetoData } };
 };

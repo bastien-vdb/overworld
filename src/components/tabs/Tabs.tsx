@@ -1,30 +1,19 @@
-import React, { useState } from 'react';
-import { CountryType } from '@/types/Country.type';
-
 type TabsProps = {
-    elements: CountryType[],
-    onTabClick: (country: CountryType) => void,
+    tabs: any,
+    onTabClick: (country: string) => void,
+    activeTab:string
 }
 
 
-function Tabs({ elements, onTabClick }: TabsProps) {
-
-    const [activeTab, setActiveTab] = useState(elements[0].country || '');
-
-    function handleTabClick(element: CountryType) {
-        setActiveTab(element.country);
-        onTabClick(element)
-    }
-
-    console.log(elements);
-
+function Tabs({ tabs, onTabClick, activeTab }: TabsProps) {
     return (
         <div className="tabs">
-            {elements.map((element) => (
-                <a className={`tab tab-lifted ${activeTab === element.country ? 'tab-active' : ''}`} key={element.country} onClick={() => handleTabClick(element)}>
-                    <span className={`text-gray-300 ${activeTab === element.country ? 'font-bold text-gray-600 text-xl duration-700' : ''}`}>{element.country.toUpperCase()}</span>
+            {Object.keys(tabs).map((element: string) => {
+                return (
+                <a className={`tab tab-lifted ${activeTab === element ? 'tab-active' : ''}`} key={element} onClick={() => onTabClick(element)}>
+                    <span className={`text-gray-300 ${activeTab === element ? 'font-bold text-gray-600 text-xl duration-700' : ''}`}>{element.toUpperCase()}</span>
                 </a>
-            ))}
+            )})}
 
         </div>
     );

@@ -1,4 +1,4 @@
-import { MapContainer, useMap } from 'react-leaflet';
+import { MapContainer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import MarkerComp from '@/components/map/MarkerComp';
 import TileLayerComp from './TileLayerComp';
@@ -9,7 +9,7 @@ const mapConfig: [number, number] = [43.7696, 7.49508];
 
 function Map() {
 
-  const { getCities } = useCity();
+  const { getCities, getActiveCountry } = useCity();
   const cities = getCities();
 
   return (
@@ -23,7 +23,8 @@ function Map() {
         style={{ height: '600px' }}
       >
         <TileLayerComp />
-        {cities.map((city, i: number) => <MarkerComp key={i} city={city} />)}
+        {cities.filter(city=>city.country === getActiveCountry())
+        .map((city, i: number) => <MarkerComp key={i} city={city} />)}
       </MapContainer>
     </div>
   );

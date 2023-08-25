@@ -1,17 +1,11 @@
-export const france = [
-    'paris','marseille'
-  ];
+export const france = ["paris", "marseille"];
 
-  export const espagne = [
-    'madrid','barcelone'
-  ];
+export const espagne = ["madrid", "barcelone"];
 
-  export const italie:string[] = [
-    'rome','milan'
-  ];
+export const italie: string[] = ["rome", "milan"];
 
-  export const allCountries = [
-    {country: 'france', cities: france},
-    {country: 'espagne', cities: espagne},
-    {country: 'italie', cities: italie}
-  ];
+export const allCities: { [key: string]: string[] } = {
+  france: france,
+  espagne: espagne,
+  italie: italie,
+};

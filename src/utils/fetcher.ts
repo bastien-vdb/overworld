@@ -7,7 +7,7 @@ export const fetcher = (url:string) => {
       })
       .catch((error) => {
         console.log(error);
-        throw new error(error);
+        throw new Error(error);
       });
   };
 

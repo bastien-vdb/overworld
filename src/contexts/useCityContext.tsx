@@ -4,16 +4,16 @@ import type { CityType } from "@/types/City.type";
 
 type CityContextType = {
   getCities: () => CityType[];
-  setCities: (cities: CityType[], country: string) => void;
+  setCities: (cities: CityType[]) => void;
   getActiveCountry: () => string;
-  activeCountry: string;
+  modifyActiveCountry: (country: string) => void;
 }
 
 const defaultCityContext: CityContextType = {
   getCities: () => [],
   setCities: () => { },
   getActiveCountry: () => "",
-  activeCountry: ""
+  modifyActiveCountry: () => { }
 };
 
 const CityContext = createContext<CityContextType>(defaultCityContext);
@@ -23,27 +23,26 @@ export const useCity = () => {
 };
 
 export const CityProvider = ({ children }: PropsWithChildren) => {
-  const [citylist, setCityList] = useState<CityType[]>([]);
-  const [activeCountry, setActiveCountry] = useState('');
+  const [citieslist, setCitiesList] = useState<CityType[]>([]);
+  const [activeCountry, setActiveCountry] = useState('france');
 
-  const setCities = (cities: CityType[], country: string) => {
-    console.log('city', cities);
-    console.log('country', country);
-    setCityList(cities);
+  const setCities = (cities: CityType[]) => {
+    setCitiesList(prev => [...prev, ...cities]);
+  };
+
+  const modifyActiveCountry = (country: string) => {
     setActiveCountry(country);
   };
 
   const getCities = () => {
-    return citylist;
+    return citieslist;
   };
 
   const getActiveCountry = () => {
     return activeCountry;
   };
 
-  console.log(citylist);
-
-  return <CityContext.Provider value={{ getCities, setCities, getActiveCountry, activeCountry }}>
+  return <CityContext.Provider value={{ getCities, setCities, modifyActiveCountry, getActiveCountry }}>
     {children}
   </CityContext.Provider>;
 };

@@ -1,0 +1,7 @@
+Par ordre d'importance:
+- Continuer le partage de l'image de l'app sur docker HUB + mise sur cloud google
+- Configuration des tests (jest)
+- Optimisation de la logique de code
+- Amélioration du design
+- Mise en place de deck.gl
+- Mise à jour du README.md si éléments ci-dessus ajouté, sinon : action non nécessaire(README.md complet)

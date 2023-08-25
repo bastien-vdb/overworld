@@ -2,7 +2,7 @@ import React from 'react';
 import { useSession } from "next-auth/react"
 
 function UserBoxInfo() {
-    const { data: session, status } = useSession();
+    const { data: session } = useSession();
     return (
         <div className='opacity-0 hidden sm:block group-hover:opacity-100 transition duration-300 ease-in-out'>
             <div className="relative rounded-lg border border-gray-200 shadow-lg">
