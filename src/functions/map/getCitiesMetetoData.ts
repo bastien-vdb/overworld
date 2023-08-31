@@ -17,7 +17,6 @@ export const getCitiesMetetoData = async (citiesLocalisation: CityType[]) => {
           };
         }
         catch (error: any) {
-            console.log('errrrooooor!')
           throw new Error(error);
         };
       })

@@ -26,6 +26,7 @@ export const CityProvider = ({ children }: PropsWithChildren) => {
   const [citieslist, setCitiesList] = useState<CityType[]>([]);
   const [activeCountry, setActiveCountry] = useState('france');
 
+  //Set ****
   const setCities = (cities: CityType[]) => {
     setCitiesList(prev => [...prev, ...cities]);
   };
@@ -34,6 +35,7 @@ export const CityProvider = ({ children }: PropsWithChildren) => {
     setActiveCountry(country);
   };
 
+  //Get ****
   const getCities = () => {
     return citieslist;
   };
