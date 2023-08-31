@@ -6,11 +6,14 @@ jest.mock('next-auth/react');
 
 describe('UserBoxInfo Component', () => {
   it('renders without crashing', () => {
+    // @ts-ignore
     useSession.mockReturnValue({ data: { user: { name: 'Bastien vermot de boisrolin', email: 'bastien.deboisrolin@gmail.com' } } }) as any;
 
     render(<UserBoxInfo />);
 
+    // @ts-ignore
     expect(screen.getByText('Bastien vermot de boisrolin')).toBeInTheDocument();
+    // @ts-ignore
     expect(screen.getByText('bastien.deboisrolin@gmail.com')).toBeInTheDocument();
   });
 
@@ -19,12 +22,14 @@ describe('UserBoxInfo Component', () => {
       matches: query === '(prefers-color-scheme: dark)',
     }));
     
+    // @ts-ignore
     useSession.mockReturnValue({ data: { user: { name: 'John Doe', email: 'john@example.com' } } });
   
     render(<UserBoxInfo />);
     
    
     it('renders without user data', () => {
+        // @ts-ignore
         useSession.mockReturnValue({ data: { user: null } });
       
         render(<UserBoxInfo />);
@@ -34,6 +39,7 @@ describe('UserBoxInfo Component', () => {
   });
 
   it('displays truncated email', () => {
+    // @ts-ignore
     useSession.mockReturnValue({ data: { user: { name: 'Bas VDB', email: 'verylongemail@teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeest.com' } } });
   
     render(<UserBoxInfo />);
