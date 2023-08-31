@@ -83,6 +83,7 @@ Hover over the avatar in the header to display the user information.
 **Next.js:** Framework for developing React applications.
 **Leaflet:** JavaScript library for creating interactive maps.
 **Tailwind CSS:** CSS framework for designing user interfaces.
+**Daisy UI** UI Built in components
 
 
 ## Code Structure

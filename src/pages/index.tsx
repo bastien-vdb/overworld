@@ -53,7 +53,7 @@ export const getServerSideProps = async () => {
 
   const citiesLocalisation = await getCitiesLocalisation(allCities['france'], 'france');
   const citiesMetetoData = await getCitiesMetetoData(citiesLocalisation);
-  console.log('server side')
+  console.log(citiesLocalisation);
 
   return { props: { citiesMetetoData } };
 };
